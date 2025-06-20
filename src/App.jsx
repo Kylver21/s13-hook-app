@@ -56,7 +56,15 @@ function AppContent() {
   // Funciones para manejar el contador
   const incrementar = () => setContador(contador + 1);
   const decrementar = () => setContador(contador - 1);
+  const incrementarDoble = () => setContador(contador + 2);
+  const decrementarDoble = () => setContador(contador - 2);
   const resetear = () => setContador(0);
+  
+  // Función para resetear nombre y apellido
+  const resetearNombres = () => {
+    setNombre('');
+    setApellido('');
+  };
   
   return (
     <div className="container">
@@ -71,14 +79,24 @@ function AppContent() {
         <div className="counter">
           <p>useState nos permite agregar estado a nuestros componentes funcionales.</p>
           <div className="counter-display">{contador}</div>
-          <button className="button" onClick={incrementar}>
-            ➕ Incrementar
-          </button>
-          <button className="button" onClick={decrementar}>
-            ➖ Decrementar
-          </button>
+          <div className="button-group">
+            <button className="button" onClick={incrementar}>
+              ➕ Incrementar +1
+            </button>
+            <button className="button" onClick={decrementar}>
+              ➖ Decrementar -1
+            </button>
+          </div>
+          <div className="button-group">
+            <button className="button" onClick={incrementarDoble}>
+              ➕➕ Incrementar +2
+            </button>
+            <button className="button" onClick={decrementarDoble}>
+              ➖➖ Decrementar -2
+            </button>
+          </div>
           <button className="button danger" onClick={resetear}>
-            🔄 Resetear
+            🔄 Resetear a 0
           </button>
         </div>
       </section>
@@ -106,10 +124,13 @@ function AppContent() {
             placeholder="Tu apellido aquí..."
           />
         </div>
+        <button className="button danger" onClick={resetearNombres}>
+          🔄 Limpiar nombres
+        </button>
         {(nombre || apellido) && (
           <div className="greeting">
             <p>¡Hola <strong>{nombre} {apellido}</strong>! Bienvenido a la aplicación de Hooks.</p>
-            <p>Tu nombre tiene {nombre.length} letras y tu apellido tiene {apellido.length} letras.</p>
+            <p>Tus nombres y tu apellido tienen {nombre.length + apellido.length} letras.</p>
           </div>
         )}
       </section>
